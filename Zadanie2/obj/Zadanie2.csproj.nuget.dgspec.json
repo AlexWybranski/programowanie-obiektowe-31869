@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie1\\Zadanie1.csproj": {}
+    "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie2\\Zadanie2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie1\\Zadanie1.csproj": {
+    "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie2\\Zadanie2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie1\\Zadanie1.csproj",
-        "projectName": "Zadanie1",
-        "projectPath": "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie1\\Zadanie1.csproj",
+        "projectUniqueName": "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie2\\Zadanie2.csproj",
+        "projectName": "Zadanie2",
+        "projectPath": "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie2\\Zadanie2.csproj",
         "packagesPath": "C:\\Users\\alexw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie1\\obj\\",
+        "outputPath": "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Zadanie2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -7,10 +7,12 @@ while (true)
 
     if (input == passwd)
     {
+        Console.WriteLine("Logged successfully!");
         break;
     }
     else
     {
+        Console.WriteLine("Wrong password!");
         continue;
     }
 }
