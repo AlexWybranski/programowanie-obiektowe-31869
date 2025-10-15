@@ -1,4 +1,7 @@
-﻿string passwd = "admin123";
+﻿//Napisz program, który pyta użytkownika o hasło, dopóki nie wpisze poprawnego
+//(„admin123”).
+
+string passwd = "admin123";
 
 while (true)
 {
