@@ -1,4 +1,6 @@
-﻿public class Person
+﻿/*Utwórz klasę Osoba z polami Imie, Wiek i metodą PrzedstawSie(). Utwórz kilka
+obiektów i wywołaj tę metodę.*/
+public class Person
 {
     public string name;
     public int age;

@@ -1,4 +1,6 @@
-﻿string[] cities =
+﻿//Utwórz tablicę z 5 nazwami miast i wypisz każde miasto w osobnej linii.
+
+string[] cities =
 {
     "London",
     "Beijing",
