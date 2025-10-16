@@ -1,0 +1,15 @@
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\bin\Debug\net9.0\Zadanie3.exe
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\bin\Debug\net9.0\Zadanie3.deps.json
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\bin\Debug\net9.0\Zadanie3.runtimeconfig.json
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\bin\Debug\net9.0\Zadanie3.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\bin\Debug\net9.0\Zadanie3.pdb
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\Zadanie3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\Zadanie3.AssemblyInfoInputs.cache
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\Zadanie3.AssemblyInfo.cs
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\Zadanie3.csproj.CoreCompileInputs.cache
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\Zadanie3.sourcelink.json
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\Zadanie3.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\refint\Zadanie3.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\Zadanie3.pdb
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\Zadanie3.genruntimeconfig.cache
+C:\Users\alexw\programowanie-obiektowe-31869\Zadanie3\obj\Debug\net9.0\ref\Zadanie3.dll
