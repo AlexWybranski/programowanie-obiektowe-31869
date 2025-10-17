@@ -1,0 +1,15 @@
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/Zadanie7.GeneratedMSBuildEditorConfig.editorconfig
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/Zadanie7.AssemblyInfoInputs.cache
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/Zadanie7.AssemblyInfo.cs
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/Zadanie7.csproj.CoreCompileInputs.cache
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/Zadanie7.sourcelink.json
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/bin/Debug/net9.0/Zadanie7
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/bin/Debug/net9.0/Zadanie7.deps.json
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/bin/Debug/net9.0/Zadanie7.runtimeconfig.json
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/bin/Debug/net9.0/Zadanie7.dll
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/bin/Debug/net9.0/Zadanie7.pdb
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/Zadanie7.dll
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/refint/Zadanie7.dll
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/Zadanie7.pdb
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/Zadanie7.genruntimeconfig.cache
+/home/balex/Dokumenty/programowanie-obiektowe-31869/Zadanie7/obj/Debug/net9.0/ref/Zadanie7.dll
