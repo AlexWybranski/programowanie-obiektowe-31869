@@ -1,0 +1,15 @@
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\bin\Debug\net9.0\Lab3_komis.exe
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\bin\Debug\net9.0\Lab3_komis.deps.json
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\bin\Debug\net9.0\Lab3_komis.runtimeconfig.json
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\bin\Debug\net9.0\Lab3_komis.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\bin\Debug\net9.0\Lab3_komis.pdb
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.AssemblyInfoInputs.cache
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.AssemblyInfo.cs
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.csproj.CoreCompileInputs.cache
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.sourcelink.json
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\refint\Lab3_komis.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.pdb
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.genruntimeconfig.cache
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\ref\Lab3_komis.dll
