@@ -4,20 +4,20 @@ public abstract class Vehicle
 {
     
     public double EngineCapacity { get; protected set; }
-    private string model;
-    private int year;
+    private string _model;
+    private int _year;
     
-    public string Model => model;
+    public string Model => _model;
 
     public int Year
     {
-        get { return year; }
+        get { return _year; }
     }
     public Vehicle(double engineCapacity, string model, int year)
     {
         EngineCapacity = engineCapacity;
-        this.model = model;
-        this.year = year;
+        this._model = model;
+        this._year = year;
     }
 
     public virtual void Start()

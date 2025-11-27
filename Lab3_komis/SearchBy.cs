@@ -14,7 +14,7 @@ public class SearchBy
         }
         var vehicles = Database.Vehicles.Where(veh => veh.Year == year);
 
-        findMatching(vehicles);
+        PrintMatching(vehicles);
     }
     
     public static void Model()
@@ -31,7 +31,7 @@ public class SearchBy
     
         var vehicles = Database.Vehicles.Where(veh => veh.Model.ToLower() == input);
 
-        findMatching(vehicles);
+        PrintMatching(vehicles);
     }
 
     public static void EngineCapacity()
@@ -46,10 +46,10 @@ public class SearchBy
         }
         var vehicles = Database.Vehicles.Where(veh => veh.EngineCapacity == engineCapacity);
         
-        findMatching(vehicles);
+        PrintMatching(vehicles);
     }
 
-    private static void findMatching(IEnumerable<Vehicle> vehicles)
+    private static void PrintMatching(IEnumerable<Vehicle> vehicles)
     {
         if (!vehicles.Any())
         {
