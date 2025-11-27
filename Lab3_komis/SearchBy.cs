@@ -14,17 +14,7 @@ public class SearchBy
         }
         var vehicles = Database.Vehicles.Where(veh => veh.Year == year);
 
-        if (!vehicles.Any())
-        {
-            Console.WriteLine("No vehicles found");
-        }
-        else
-        {
-            foreach (var veh in vehicles)
-            {
-                Console.WriteLine(veh.Model);
-            }
-        }
+        findMatching(vehicles);
     }
     
     public static void Model()
@@ -41,17 +31,7 @@ public class SearchBy
     
         var vehicles = Database.Vehicles.Where(veh => veh.Model.ToLower() == input);
 
-        if (!vehicles.Any())
-        {
-            Console.WriteLine("No vehicles found");
-        }
-        else
-        {
-            foreach (var veh in vehicles)
-            {
-                Console.WriteLine(veh.Model);
-            }
-        }
+        findMatching(vehicles);
     }
 
     public static void EngineCapacity()
@@ -60,13 +40,17 @@ public class SearchBy
         var success = double.TryParse(Console.ReadLine(), out double engineCapacity);
         if (!success)
         {
-            Console.WriteLine("Invalid year");
+            Console.WriteLine("Invalid format, try 'x,y'");
             EngineCapacity();
             return;
         }
         var vehicles = Database.Vehicles.Where(veh => veh.EngineCapacity == engineCapacity);
-    
-    
+        
+        findMatching(vehicles);
+    }
+
+    private static void findMatching(IEnumerable<Vehicle> vehicles)
+    {
         if (!vehicles.Any())
         {
             Console.WriteLine("No vehicles found");
