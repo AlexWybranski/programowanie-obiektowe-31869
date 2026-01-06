@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lab3_komis")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c87b5d96095a012a3ba50d6617f0450ee211726")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+063c59eaebd5d5abf38472cceed880e6768e5594")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lab3_komis")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lab3_komis")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

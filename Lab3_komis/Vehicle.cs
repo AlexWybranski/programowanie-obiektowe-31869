@@ -2,22 +2,15 @@
 
 public abstract class Vehicle
 {
-    
-    public double EngineCapacity { get; protected set; }
-    private string _model;
-    private int _year;
-    
-    public string Model => _model;
-
-    public int Year
-    {
-        get { return _year; }
-    }
+    public int Id { get; protected set; }
+    public double EngineCapacity { get; set; }
+    public string Model { get ; set; }
+    public int Year { get; set; }
     public Vehicle(double engineCapacity, string model, int year)
     {
         EngineCapacity = engineCapacity;
-        this._model = model;
-        this._year = year;
+        Model = model;
+        Year = year;
     }
 
     public virtual void Start()
