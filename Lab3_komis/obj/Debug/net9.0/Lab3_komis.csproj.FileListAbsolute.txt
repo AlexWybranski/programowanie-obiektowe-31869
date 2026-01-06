@@ -13,3 +13,5 @@ C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\refint\
 C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.pdb
 C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\Lab3_komis.genruntimeconfig.cache
 C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\obj\Debug\net9.0\ref\Lab3_komis.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\bin\Debug\net9.0\cars.json
+C:\Users\alexw\programowanie-obiektowe-31869\Lab3_komis\bin\Debug\net9.0\bikes.json

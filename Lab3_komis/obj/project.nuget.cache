@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "8OKMttG+qgs=",
+  "dgSpecHash": "S0PlDlmjd0E=",
   "success": true,
   "projectFilePath": "C:\\Users\\alexw\\programowanie-obiektowe-31869\\Lab3_komis\\Lab3_komis.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\alexw\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.11\\microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\alexw\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.11\\microsoft.windowsdesktop.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\alexw\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.11\\microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\alexw\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.11\\microsoft.netcore.app.host.win-x64.9.0.11.nupkg.sha512"
+  ],
   "logs": []
 }

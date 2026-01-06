@@ -1,4 +1,23 @@
-﻿using Lab3_komis;
+﻿using System.Text.Json;
+using Lab3_komis;
+
+var carsPath = Path.Combine(Directory.GetCurrentDirectory(), "cars.json");
+var bikesPath = Path.Combine(Directory.GetCurrentDirectory(), "bikes.json");
+
+var carsJson = File.ReadAllText(carsPath);
+var bikesJson = File.ReadAllText(bikesPath);
+
+var cars = JsonSerializer.Deserialize<List<Car>>(carsJson);
+var bikes = JsonSerializer.Deserialize<List<Bike>>(bikesJson);
+
+List<Vehicle> Vehicles()
+{
+    var list = new List<Vehicle>();
+    list.AddRange(cars);
+    list.AddRange(bikes);
+    return list;
+}
+
 bool running = true;
 
 do
@@ -16,13 +35,13 @@ do
             DisplayVehicleModel();
             break;
         case '2':
-            SearchBy.Year();
+            SearchByYear();
             break;
         case '3':
-            SearchBy.Model();
+            SearchByModel();
             break;
         case '4':
-            SearchBy.EngineCapacity();
+            SearchByEngineCapacity();
             break;
         case '5':
             AddNewVehicle();
@@ -40,9 +59,86 @@ do
 void DisplayVehicleModel()
 {
     Console.WriteLine("Vehicles:");
-    foreach (var veh in Database.Vehicles)
+    foreach (var veh in Vehicles())
     {
         Console.WriteLine(veh.Model);
+    }
+}
+
+void SearchByYear()
+{
+    Console.Write("Enter year: ");
+    var success = Int32.TryParse(Console.ReadLine(), out int year);
+    if (!success)
+    {
+        Console.WriteLine("Invalid year");
+        SearchByYear();
+        return;
+    }
+    var vehicles = Vehicles().Where(veh => veh.Year == year);
+
+    if (!vehicles.Any())
+    {
+        Console.WriteLine("No vehicles found");
+    }
+    else
+    {
+        foreach (var veh in vehicles)
+        {
+            Console.WriteLine(veh.Model);
+        }
+    }
+}
+
+void SearchByModel()
+{
+    Console.Write("Enter model: ");
+    string? input =  Console.ReadLine();
+    if (String.IsNullOrWhiteSpace(input))
+    {
+        Console.WriteLine("Invalid model");
+        SearchByModel();
+        return;
+    }
+    input = input.ToLower().Trim();
+    
+    var vehicles = Vehicles().Where(veh => veh.Model.ToLower() == input);
+
+    if (!vehicles.Any())
+    {
+        Console.WriteLine("No vehicles found");
+    }
+    else
+    {
+        foreach (var veh in vehicles)
+        {
+            Console.WriteLine(veh.Model);
+        }
+    }
+}
+
+void SearchByEngineCapacity()
+{
+    Console.Write("Enter engine capacity: ");
+    var success = double.TryParse(Console.ReadLine(), out double engineCapacity);
+    if (!success)
+    {
+        Console.WriteLine("Invalid format, try 'x,y'");
+        SearchByEngineCapacity();
+        return;
+    }
+    var vehicles = Vehicles().Where(veh => veh.EngineCapacity == engineCapacity);
+
+    if (!vehicles.Any())
+    {
+        Console.WriteLine("No vehicles found");
+    }
+    else
+    {
+        foreach (var veh in vehicles)
+        {
+            Console.WriteLine(veh.Model);
+        }
     }
 }
 
@@ -80,15 +176,17 @@ void AddNewVehicle()
         Console.WriteLine("Invalid year");
         return;
     }
-
-    Vehicle v;
-    if (input == 'C')
+    
+    if (input == 'c')
     {
-        v = new Car(engineCapacity, model, year);
+        var v = new Car(engineCapacity, model, year);
+        cars.Add(v);
+        File.WriteAllText(carsPath, JsonSerializer.Serialize(cars));
     }
     else
     {
-        v = new Bike(engineCapacity, model, year);
+        var v = new Bike(engineCapacity, model, year);
+        bikes.Add(v);
+        File.WriteAllText(bikesPath, JsonSerializer.Serialize(bikes));
     }
-    Database.Vehicles.Add(v);
 }
