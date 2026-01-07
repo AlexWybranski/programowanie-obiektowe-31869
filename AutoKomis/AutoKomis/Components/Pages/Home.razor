@@ -1,0 +1,37 @@
+﻿@page "/"
+@using AutoKomis.Database
+@inject VehicleDb db
+
+<PageTitle>Moje samochody</PageTitle>
+
+<h1>Lista</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <th>Marka</th>
+        <th>Model</th>
+        <th>Rok</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var car in db.Cars)
+    {
+        <tr>
+            <td>@car.Id</td>
+            <td>@car.Make</td>
+            <td>@car.Model</td>
+            <td>@car.Year</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code {
+
+    
+
+}
+
+Welcome to your new app.

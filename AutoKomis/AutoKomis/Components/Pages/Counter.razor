@@ -1,0 +1,49 @@
+﻿@page "/new-car"
+@using AutoKomis.Database
+@using AutoKomis.Models
+@rendermode InteractiveServer
+@inject VehicleDb db
+
+<PageTitle>Nowy Samochód</PageTitle>
+
+<h1>Dodaj samochód</h1>
+
+<form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+    <AntiforgeryToken />
+    <div>
+        <label>
+            Marka:
+            <InputText @bind-Value="Model!.Make"/>
+        </label>
+    </div>
+    <div>
+        <label>
+            Model:
+            <InputText @bind-Value="Model!.Model"/>
+        </label>
+    </div>
+    <div>
+        <label>
+            Rok:
+            <InputNumber @bind-Value="Model!.Year"/>
+        </label>
+    </div>
+    <div>
+        <button type="submit">
+            Submit
+        </button>
+    </div>
+</form>
+
+@code {
+    [SupplyParameterFromForm]
+    private Car? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Submit()
+    {
+        db.Cars.Add(Model);
+        db.SaveChanges();
+    }
+}
