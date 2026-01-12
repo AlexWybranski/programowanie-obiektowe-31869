@@ -23,3 +23,8 @@ public class Game : Item
     public string Platform { get; set; }
     public string Edition {get; set;}
 }
+
+public class Wishlist : Item
+{
+    public string Platform { get; set; }
+}

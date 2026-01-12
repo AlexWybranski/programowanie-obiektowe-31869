@@ -1,0 +1,113 @@
+﻿@page "/wishlist"
+@rendermode InteractiveServer
+@using BlazorBootstrap
+@using Projekt.Database
+@using Projekt.Items
+@using HtmlAgilityPack
+@inject Database db
+
+<PageTitle>My Games and more</PageTitle>
+
+<h1>Wishlist</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>Platform</td>
+        <td>Value</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var wish in db.Wishlist)
+    {
+        <tr>
+            <td>@wish.ID</td>
+            <td>@wish.Name</td>
+            <td>@wish.Platform</td>
+            <td>@wish.ValueOfItem</td>
+            <td>
+                <a @onclick="@(e => Delete(wish.ID))">
+                    <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
+    <BodyTemplate>
+        <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+            <AntiforgeryToken/>
+            <div>
+                <label>
+                    Name:
+                    <InputText @bind-Value="Wish!.Name"/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Platform:
+                    <InputText @bind-Value="Wish!.Platform"/>
+                </label>
+            </div>
+            <div>
+                <button @onclick="OnHideModalClick">Cancel</button>
+                <button @onclick="OnHideModalClick" type="submit">Add</button>
+            </div>
+        </form>
+    </BodyTemplate>
+</Modal>
+
+<Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+
+@code {
+    private Modal modal = default!;
+
+    public async Task OnShowModalClick()
+    {
+        await modal.ShowAsync();
+    }
+
+    public async Task OnHideModalClick()
+    {
+        await modal.HideAsync();
+    }
+    
+    [SupplyParameterFromForm]
+    private Wishlist? Wish { get; set; }
+
+    protected override void OnInitialized() => Wish ??= new();
+
+    private void Submit()
+    {
+        Wish.ValueOfItem = GameValueScraper(Wish.Name, Wish.Platform);
+        db.Wishlist.Add(Wish);
+        db.SaveChanges();
+    }
+    
+    private void Delete(int id)
+    {
+        db.Wishlist.Remove(db.Wishlist.First(w => w.ID == id));
+        db.SaveChanges();
+    }
+    
+    string GameValueScraper(string name, string platform)
+    {
+        name = name.ToLower().Replace(' ', '-');
+        platform = platform.ToLower().Replace(' ', '-');
+        var web =  new HtmlWeb();
+        var url = "https://pricecharting.com/game/" + platform + "/" + name;
+        var doc = web.Load(url);
+        var gameElement = doc.GetElementbyId("complete_price");
+        if (gameElement == null)
+        {
+            return "N/A";
+        }
+        var target = gameElement.SelectSingleNode(".//*[contains(@class, 'price js-price')]");
+        string price = target.InnerText;
+        return price;
+    }
+}
