@@ -1,0 +1,103 @@
+﻿@page "/accessories"
+@rendermode InteractiveServer
+@using BlazorBootstrap
+@using Projekt.Database
+@using Projekt.Items
+@inject Database db
+
+<PageTitle>My Games and more</PageTitle>
+
+<h1>Accessories</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Platform</td>
+        <td>Colour</td>
+        <td>Value</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var acc in db.Accessories)
+    {
+        <tr>
+            <td>@acc.ID</td>
+            <td>@acc.Name</td>
+            <td>@acc.Platform</td>
+            <td>@acc.Colour</td>
+            <td>@acc.ValueOfItem</td>
+            <td>
+                <a @onclick="@(e => Delete(acc.ID))">
+                    <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
+    <BodyTemplate>
+        <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+            <AntiforgeryToken/>
+            <div>
+                <label>
+                    Name:
+                    <InputText @bind-Value="Acc!.Name"/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Platform:
+                    <InputText @bind-Value="Acc!.Platform"/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Colour:
+                    <InputText @bind-Value="Acc!.Colour"/>
+                </label>
+            </div>
+            <div>
+                <button @onclick="OnHideModalClick">Cancel</button>
+                <button @onclick="OnHideModalClick" type="submit">Add</button>
+            </div>
+        </form>
+    </BodyTemplate>
+</Modal>
+
+<Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+
+@code {
+    private Modal modal = default!;
+
+    public async Task OnShowModalClick()
+    {
+        await modal.ShowAsync();
+    }
+
+    public async Task OnHideModalClick()
+    {
+        await modal.HideAsync();
+    }
+    
+    [SupplyParameterFromForm]
+    private Accessory? Acc { get; set; }
+
+    protected override void OnInitialized() => Acc ??= new();
+
+    private void Submit()
+    {
+        Acc.ValueOfItem = "N/A";
+        db.Accessories.Add(Acc);
+        db.SaveChanges();
+    }
+    
+    private void Delete(int id)
+    {
+        db.Accessories.Remove(db.Accessories.First(w => w.ID == id));
+        db.SaveChanges();
+    }
+}

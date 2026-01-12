@@ -1,0 +1,96 @@
+﻿@page "/consoles"
+@rendermode InteractiveServer
+@using BlazorBootstrap
+@using Projekt.Database
+@using Projekt.Items
+@using Console = Projekt.Items.Console
+@inject Database db
+
+<PageTitle>My Games and more</PageTitle>
+
+<h1>Consoles</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Condition</td>
+        <td>Value</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var console in db.Consoles)
+    {
+        <tr>
+            <td>@console.ID</td>
+            <td>@console.Name</td>
+            <td>@console.Condition</td>
+            <td>@console.ValueOfItem</td>
+            <td>
+                <a @onclick="@(e => Delete(console.ID))">
+                    <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
+    <BodyTemplate>
+        <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+            <AntiforgeryToken/>
+            <div>
+                <label>
+                    Name:
+                    <InputText @bind-Value="Console!.Name"/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Condition:
+                    <InputText @bind-Value="Console!.Condition"/>
+                </label>
+            </div>
+            <div>
+                <button @onclick="OnHideModalClick">Cancel</button>
+                <button @onclick="OnHideModalClick" type="submit">Add</button>
+            </div>
+        </form>
+    </BodyTemplate>
+</Modal>
+
+<Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+
+@code {
+    private Modal modal = default!;
+
+    public async Task OnShowModalClick()
+    {
+        await modal.ShowAsync();
+    }
+
+    public async Task OnHideModalClick()
+    {
+        await modal.HideAsync();
+    }
+    
+    [SupplyParameterFromForm]
+    private Console? Console { get; set; }
+
+    protected override void OnInitialized() => Console ??= new();
+
+    private void Submit()
+    {
+        Console.ValueOfItem = "N/A";
+        db.Consoles.Add(Console);
+        db.SaveChanges();
+    }
+    
+    private void Delete(int id)
+    {
+        db.Consoles.Remove(db.Consoles.First(w => w.ID == id));
+        db.SaveChanges();
+    }
+}

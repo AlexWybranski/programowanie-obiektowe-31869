@@ -1,0 +1,125 @@
+﻿@page "/"
+@using BlazorBootstrap
+@using Microsoft.EntityFrameworkCore
+@using Projekt.Database
+@using Projekt.Items
+@using HtmlAgilityPack
+@inject Database db
+@rendermode InteractiveServer
+
+<PageTitle>My Games and more</PageTitle>
+
+<h1>Games</h1>
+<div>
+    <Button color="ButtonColor.Secondary">Filter</Button>
+    <Button color="ButtonColor.Secondary">Sort</Button>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>Platform</td>
+        <td>Edition</td>
+        <td>Value</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var game in db.Games)
+    {
+        <tr>
+            <td>@game.ID</td>
+            <td>@game.Name</td>
+            <td>@game.Platform</td>
+            <td>@game.Edition</td>
+            <td>@game.ValueOfItem</td>
+            <td>
+                <a @onclick="@(e => Delete(game.ID))">
+                    <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
+    <BodyTemplate>
+        <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+            <AntiforgeryToken/>
+            <div>
+                <label>
+                    Title:
+                    <InputText @bind-Value="Game!.Name"/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Platform:
+                    <InputText @bind-Value="Game!.Platform"/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Edition:
+                    <InputText @bind-Value="Game!.Edition"/>
+                </label>
+            </div>
+            <div>
+                <button @onclick="OnHideModalClick">Cancel</button>
+                <button @onclick="OnHideModalClick" type="submit">Add</button>
+            </div>
+        </form>
+    </BodyTemplate>
+</Modal>
+
+<Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+
+@code {
+    private Modal modal = default!;
+
+    public async Task OnShowModalClick()
+    {
+        await modal.ShowAsync();
+    }
+
+    public async Task OnHideModalClick()
+    {
+        await modal.HideAsync();
+    }
+    
+    [SupplyParameterFromForm]
+    private Game? Game { get; set; }
+
+    protected override void OnInitialized() => Game ??= new();
+
+    private void Submit()
+    {
+        Game.ValueOfItem = GameValueScraper(Game.Name, Game.Platform);
+        db.Games.Add(Game);
+        db.SaveChanges();
+    }
+
+    private void Delete(int id)
+    {
+        db.Games.Remove(db.Games.First(w => w.ID == id));
+        db.SaveChanges();
+    }
+    
+    string GameValueScraper(string name, string platform)
+    {
+        name = name.ToLower().Replace(' ', '-');
+        platform = platform.ToLower().Replace(' ', '-');
+        var web =  new HtmlWeb();
+        var url = "https://pricecharting.com/game/" + platform + "/" + name;
+        var doc = web.Load(url);
+        var gameElement = doc.GetElementbyId("complete_price");
+        if (gameElement == null)
+        {
+            return "N/A";
+        }
+        var target = gameElement.SelectSingleNode(".//*[contains(@class, 'price js-price')]");
+        string price = target.InnerText;
+        return price;
+    }
+}
