@@ -54,6 +54,12 @@
                 </label>
             </div>
             <div>
+                <label>
+                    Value:
+                    <InputText @bind-Value="Console!.ValueOfItem"/>
+                </label>
+            </div>
+            <div>
                 <button @onclick="OnHideModalClick">Cancel</button>
                 <button @onclick="OnHideModalClick" type="submit">Add</button>
             </div>
@@ -83,7 +89,10 @@
 
     private void Submit()
     {
-        Console.ValueOfItem = "N/A";
+        if (Console.ValueOfItem == null)
+        {
+            Console.ValueOfItem = "N/A";
+        }
         db.Consoles.Add(Console);
         db.SaveChanges();
     }

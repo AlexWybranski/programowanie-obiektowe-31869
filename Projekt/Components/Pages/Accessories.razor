@@ -61,6 +61,12 @@
                 </label>
             </div>
             <div>
+                <label>
+                    Value:
+                    <InputText @bind-Value="Acc!.ValueOfItem"/>
+                </label>
+            </div>
+            <div>
                 <button @onclick="OnHideModalClick">Cancel</button>
                 <button @onclick="OnHideModalClick" type="submit">Add</button>
             </div>
@@ -90,7 +96,10 @@
 
     private void Submit()
     {
-        Acc.ValueOfItem = "N/A";
+        if(Acc.ValueOfItem == null)
+        {
+            Acc.ValueOfItem = "N/A";
+        }
         db.Accessories.Add(Acc);
         db.SaveChanges();
     }
