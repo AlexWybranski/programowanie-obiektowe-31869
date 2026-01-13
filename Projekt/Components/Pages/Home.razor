@@ -4,48 +4,41 @@
 @using Projekt.Database
 @using Projekt.Items
 @using HtmlAgilityPack
+@using Microsoft.AspNetCore.Components.QuickGrid
 @inject Database db
 @rendermode InteractiveServer
 
 <PageTitle>My Games and more</PageTitle>
 
 <h1>Games</h1>
-<div>
-    <Button color="ButtonColor.Secondary">Filter</Button>
-    <Button color="ButtonColor.Secondary">Sort</Button>
-</div>
-<table class="table">
-    <thead>
-    <tr>
-        <td>Id</td>
-        <td>Title</td>
-        <td>Platform</td>
-        <td>Edition</td>
-        <td>Value</td>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var game in db.Games)
-    {
-        <tr>
-            <td>@game.ID</td>
-            <td>@game.Name</td>
-            <td>@game.Platform</td>
-            <td>@game.Edition</td>
-            <td>@game.ValueOfItem</td>
-            <td>
-                <a @onclick="@(e => Delete(game.ID))">
-                    <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
-                </a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<QuickGrid @ref="Grid" Class="table table-striped m-0"
+           Items="@db.Games"
+           ItemKey="@(x => x.ID)">
+    <PropertyColumn Title="ID"
+                    Property="@(x => x.ID)"
+                    Sortable="true"/>
+    <PropertyColumn Title="Title"
+                    Property="@(x => x.Name)"
+                    Sortable="true"/>
+    <PropertyColumn Title="Platform"
+                    Property="@(x => x.Platform)"
+                    Sortable="true"/>
+    <PropertyColumn Title="Edition"
+                    Property="@(x => x.Edition)"/>
+    <PropertyColumn Title="Value"
+                    Property="@(x => x.ValueOfItem)"
+                    Sortable="true"/>
+    <TemplateColumn>
+        <div>
+            <a @onclick="async() => await Delete(context)">
+                <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
+            </a>
+        </div>
+    </TemplateColumn>
+</QuickGrid>
 <Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
     <BodyTemplate>
-        <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+        <form method="post" @onsubmit="async() => await Submit(Game)" @formname="starship-plain-form">
             <AntiforgeryToken/>
             <div>
                 <label>
@@ -76,10 +69,13 @@
 <Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
 
 @code {
+    QuickGrid<Game> Grid;
+    
     private Modal modal = default!;
 
     public async Task OnShowModalClick()
     {
+        Game = new Game();
         await modal.ShowAsync();
     }
 
@@ -90,20 +86,21 @@
     
     [SupplyParameterFromForm]
     private Game? Game { get; set; }
-
     protected override void OnInitialized() => Game ??= new();
 
-    private void Submit()
+    private async Task Submit(Game game)
     {
-        Game.ValueOfItem = GameValueScraper(Game.Name, Game.Platform);
-        db.Games.Add(Game);
-        db.SaveChanges();
+        game.ValueOfItem = GameValueScraper(game.Name, game.Platform);
+        db.Games.Add(game);
+        await db.SaveChangesAsync();
+        await Grid.RefreshDataAsync();
     }
 
-    private void Delete(int id)
+    private async Task Delete(Game game)
     {
-        db.Games.Remove(db.Games.First(w => w.ID == id));
-        db.SaveChanges();
+        db.Games.Remove(game);
+        await db.SaveChangesAsync();
+        await Grid.RefreshDataAsync();
     }
     
     string GameValueScraper(string name, string platform)

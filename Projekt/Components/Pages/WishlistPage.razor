@@ -4,42 +4,38 @@
 @using Projekt.Database
 @using Projekt.Items
 @using HtmlAgilityPack
+@using Microsoft.AspNetCore.Components.QuickGrid
 @inject Database db
 
 <PageTitle>My Games and more</PageTitle>
 
 <h1>Wishlist</h1>
-
-<table class="table">
-    <thead>
-    <tr>
-        <td>Id</td>
-        <td>Title</td>
-        <td>Platform</td>
-        <td>Value</td>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var wish in db.Wishlist)
-    {
-        <tr>
-            <td>@wish.ID</td>
-            <td>@wish.Name</td>
-            <td>@wish.Platform</td>
-            <td>@wish.ValueOfItem</td>
-            <td>
-                <a @onclick="@(e => Delete(wish.ID))">
-                    <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
-                </a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<QuickGrid @ref="Grid" Class="table table-striped m-0"
+           Items="@db.Wishlist"
+           ItemKey="@(x => x.ID)">
+    <PropertyColumn Title="ID"
+                    Property="@(x => x.ID)"
+                    Sortable="true"/>
+    <PropertyColumn Title="Title"
+                    Property="@(x => x.Name)"
+                    Sortable="true"/>
+    <PropertyColumn Title="Platform"
+                    Property="@(x => x.Platform)"
+                    Sortable="true"/>
+    <PropertyColumn Title="Value"
+                    Property="@(x => x.ValueOfItem)"
+                    Sortable="true"/>
+    <TemplateColumn>
+        <div>
+            <a @onclick="async() => await Delete(context)">
+                <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
+            </a>
+        </div>
+    </TemplateColumn>
+</QuickGrid>
 <Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
     <BodyTemplate>
-        <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+        <form method="post" @onsubmit="async() => await Submit(Wish)" @formname="starship-plain-form">
             <AntiforgeryToken/>
             <div>
                 <label>
@@ -64,10 +60,13 @@
 <Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
 
 @code {
+    QuickGrid<Wishlist> Grid;
+    
     private Modal modal = default!;
 
     public async Task OnShowModalClick()
     {
+        Wish = new Wishlist();
         await modal.ShowAsync();
     }
 
@@ -81,17 +80,19 @@
 
     protected override void OnInitialized() => Wish ??= new();
 
-    private void Submit()
+    private async Task Submit(Wishlist wish)
     {
-        Wish.ValueOfItem = GameValueScraper(Wish.Name, Wish.Platform);
-        db.Wishlist.Add(Wish);
-        db.SaveChanges();
+        wish.ValueOfItem = GameValueScraper(wish.Name, wish.Platform);
+        db.Wishlist.Add(wish);
+        await db.SaveChangesAsync();
+        await Grid.RefreshDataAsync();
     }
     
-    private void Delete(int id)
+    private async Task Delete(Wishlist wish)
     {
-        db.Wishlist.Remove(db.Wishlist.First(w => w.ID == id));
-        db.SaveChanges();
+        db.Wishlist.Remove(wish);
+        await db.SaveChangesAsync();
+        await Grid.RefreshDataAsync();
     }
     
     string GameValueScraper(string name, string platform)

@@ -10,6 +10,8 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddBlazorBootstrap();
 
+builder.Services.AddQuickGridEntityFrameworkAdapter();
+
 builder.Services.AddDbContext<Database>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

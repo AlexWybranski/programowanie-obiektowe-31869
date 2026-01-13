@@ -320,6 +320,10 @@ C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\36w3eu0hkb-j8zp7bt7w3.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\mfzx4sb2rv-79hai7knhw.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\8kf3rcg0xy-olwso25aue.gz
-C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\j9zu1utwki-ohu2dnhfdx.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\ekfv7cp2dh-argw8kybru.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\bin\Debug\net9.0\HtmlAgilityPack.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Projekt\bin\Debug\net9.0\Microsoft.AspNetCore.Components.QuickGrid.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\unlu0xluo6-eu7w3d5g1a.gz
+C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\3gin1ph7ub-25o87uqmvr.gz
+C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\j9zu1utwki-j1bla9fvtb.gz
+C:\Users\alexw\programowanie-obiektowe-31869\Projekt\bin\Debug\net9.0\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.dll

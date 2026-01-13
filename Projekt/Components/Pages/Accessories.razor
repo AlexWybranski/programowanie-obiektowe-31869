@@ -3,44 +3,41 @@
 @using BlazorBootstrap
 @using Projekt.Database
 @using Projekt.Items
+@using Microsoft.AspNetCore.Components.QuickGrid
 @inject Database db
 
 <PageTitle>My Games and more</PageTitle>
 
 <h1>Accessories</h1>
 
-<table class="table">
-    <thead>
-    <tr>
-        <td>Id</td>
-        <td>Name</td>
-        <td>Platform</td>
-        <td>Colour</td>
-        <td>Value</td>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var acc in db.Accessories)
-    {
-        <tr>
-            <td>@acc.ID</td>
-            <td>@acc.Name</td>
-            <td>@acc.Platform</td>
-            <td>@acc.Colour</td>
-            <td>@acc.ValueOfItem</td>
-            <td>
-                <a @onclick="@(e => Delete(acc.ID))">
-                    <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
-                </a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<QuickGrid @ref="Grid" Class="table table-striped m-0"
+           Items="@db.Accessories"
+           ItemKey="@(x => x.ID)">
+    <PropertyColumn Title="ID"
+                    Property="@(x => x.ID)"
+                    Sortable="true"/>
+    <PropertyColumn Title="Title"
+                    Property="@(x => x.Name)"
+                    Sortable="true"/>
+    <PropertyColumn Title="Platform"
+                    Property="@(x => x.Platform)"
+                    Sortable="true"/>
+    <PropertyColumn Title="Colour"
+                    Property="@(x => x.Colour)"/>
+    <PropertyColumn Title="Value"
+                    Property="@(x => x.ValueOfItem)"
+                    Sortable="true"/>
+    <TemplateColumn>
+        <div>
+            <a @onclick="async() => await Delete(context)">
+                <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
+            </a>
+        </div>
+    </TemplateColumn>
+</QuickGrid>
 <Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
     <BodyTemplate>
-        <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+        <form method="post" @onsubmit="async() => await Submit(Acc)" @formname="starship-plain-form">
             <AntiforgeryToken/>
             <div>
                 <label>
@@ -77,10 +74,13 @@
 <Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
 
 @code {
+    QuickGrid<Accessory> Grid;
+    
     private Modal modal = default!;
 
     public async Task OnShowModalClick()
     {
+        Acc = new Accessory();
         await modal.ShowAsync();
     }
 
@@ -94,19 +94,21 @@
 
     protected override void OnInitialized() => Acc ??= new();
 
-    private void Submit()
+    private async Task Submit(Accessory accessory)
     {
-        if(Acc.ValueOfItem == null)
+        if(accessory.ValueOfItem == null)
         {
-            Acc.ValueOfItem = "N/A";
+            accessory.ValueOfItem = "N/A";
         }
-        db.Accessories.Add(Acc);
-        db.SaveChanges();
+        db.Accessories.Add(accessory);
+        await db.SaveChangesAsync();
+        await Grid.RefreshDataAsync();
     }
     
-    private void Delete(int id)
+    private async Task Delete(Accessory accessory)
     {
-        db.Accessories.Remove(db.Accessories.First(w => w.ID == id));
-        db.SaveChanges();
+        db.Accessories.Remove(accessory);
+        await db.SaveChangesAsync();
+        await Grid.RefreshDataAsync();
     }
 }

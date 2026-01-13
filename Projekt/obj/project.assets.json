@@ -74,12 +74,12 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authorization/9.0.9": {
+      "Microsoft.AspNetCore.Authorization/9.0.11": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "9.0.9",
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.9",
-          "Microsoft.Extensions.Options": "9.0.9"
+          "Microsoft.AspNetCore.Metadata": "9.0.11",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.11",
+          "Microsoft.Extensions.Options": "9.0.11"
         },
         "compile": {
           "lib/net9.0/Microsoft.AspNetCore.Authorization.dll": {
@@ -92,11 +92,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components/9.0.9": {
+      "Microsoft.AspNetCore.Components/9.0.11": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "9.0.9",
-          "Microsoft.AspNetCore.Components.Analyzers": "9.0.9"
+          "Microsoft.AspNetCore.Authorization": "9.0.11",
+          "Microsoft.AspNetCore.Components.Analyzers": "9.0.11"
         },
         "compile": {
           "lib/net9.0/Microsoft.AspNetCore.Components.dll": {
@@ -109,7 +109,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Analyzers/9.0.9": {
+      "Microsoft.AspNetCore.Components.Analyzers/9.0.11": {
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
@@ -132,10 +132,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Forms/9.0.9": {
+      "Microsoft.AspNetCore.Components.Forms/9.0.11": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "9.0.9"
+          "Microsoft.AspNetCore.Components": "9.0.11"
         },
         "compile": {
           "lib/net9.0/Microsoft.AspNetCore.Components.Forms.dll": {
@@ -148,14 +148,53 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Web/9.0.9": {
+      "Microsoft.AspNetCore.Components.QuickGrid/9.0.11": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "9.0.9",
-          "Microsoft.AspNetCore.Components.Forms": "9.0.9",
-          "Microsoft.Extensions.DependencyInjection": "9.0.9",
-          "Microsoft.Extensions.Primitives": "9.0.9",
-          "Microsoft.JSInterop": "9.0.9"
+          "Microsoft.AspNetCore.Components.Web": "9.0.11"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.QuickGrid.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.QuickGrid.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Microsoft.AspNetCore.Components.QuickGrid.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.AspNetCore.Components.QuickGrid.props": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter/9.0.11": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.QuickGrid": "9.0.11",
+          "Microsoft.EntityFrameworkCore": "9.0.11"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/9.0.11": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "9.0.11",
+          "Microsoft.AspNetCore.Components.Forms": "9.0.11",
+          "Microsoft.Extensions.DependencyInjection": "9.0.11",
+          "Microsoft.Extensions.Primitives": "9.0.11",
+          "Microsoft.JSInterop": "9.0.11"
         },
         "compile": {
           "lib/net9.0/Microsoft.AspNetCore.Components.Web.dll": {
@@ -168,7 +207,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Metadata/9.0.9": {
+      "Microsoft.AspNetCore.Metadata/9.0.11": {
         "type": "package",
         "compile": {
           "lib/net9.0/Microsoft.AspNetCore.Metadata.dll": {
@@ -1087,7 +1126,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.JSInterop/9.0.9": {
+      "Microsoft.JSInterop/9.0.11": {
         "type": "package",
         "compile": {
           "lib/net9.0/Microsoft.JSInterop.dll": {
@@ -1610,10 +1649,10 @@
         "logo.png"
       ]
     },
-    "Microsoft.AspNetCore.Authorization/9.0.9": {
-      "sha512": "OVUDsnJDBhCuyJtjkQXObWbBGjh4kyxL/pl/5RqtZHnSJcpEr1eD6l4vbFIdRHg4bFI59vTTrfHKQ3zwfR4KCw==",
+    "Microsoft.AspNetCore.Authorization/9.0.11": {
+      "sha512": "VtzQJnpvemh+n4jjMJR+XWiupCWu+Em822orJIFF9jXRfrJET1fBTo6yWqNFnQQKqtvQ3E4Vrjq0N/bHdZR25w==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authorization/9.0.9",
+      "path": "microsoft.aspnetcore.authorization/9.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1625,14 +1664,14 @@
         "lib/net9.0/Microsoft.AspNetCore.Authorization.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
-        "microsoft.aspnetcore.authorization.9.0.9.nupkg.sha512",
+        "microsoft.aspnetcore.authorization.9.0.11.nupkg.sha512",
         "microsoft.aspnetcore.authorization.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components/9.0.9": {
-      "sha512": "n8hjxdgIAWTtYOu1bitWwi8HYR7OT78syKpNSzJ8jSvzv5xnJFMf7BaZCorNx+Y76CINKrG9TBNY6ovBSnNahQ==",
+    "Microsoft.AspNetCore.Components/9.0.11": {
+      "sha512": "HIMOsBnuhcTNWBnCyugRHVgrh4iYfIM2Hl+8+8SQ6wrEIk+I2fUKa8USwV8XaMvZsjyJD7fPHaldAPoR9BNAVA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components/9.0.9",
+      "path": "microsoft.aspnetcore.components/9.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1640,14 +1679,14 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net9.0/Microsoft.AspNetCore.Components.dll",
         "lib/net9.0/Microsoft.AspNetCore.Components.xml",
-        "microsoft.aspnetcore.components.9.0.9.nupkg.sha512",
+        "microsoft.aspnetcore.components.9.0.11.nupkg.sha512",
         "microsoft.aspnetcore.components.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Analyzers/9.0.9": {
-      "sha512": "jmT0+VkIoSq3VNshj8XX44aV/oQtA82xYa7ScqmAa7I2avXgMiQZzGEbd5dmn2PjKqYvI9MlK+gLyja1TYPzzQ==",
+    "Microsoft.AspNetCore.Components.Analyzers/9.0.11": {
+      "sha512": "7345cqEUev15rfdBeoBmYtUFrdHyYP/FVUbva3Q66eFTT0UuaykqWPtHmnv8R8GJZ9xntMxKhmqhySZTnth7sQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.analyzers/9.0.9",
+      "path": "microsoft.aspnetcore.components.analyzers/9.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1656,7 +1695,7 @@
         "analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll",
         "build/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
         "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
-        "microsoft.aspnetcore.components.analyzers.9.0.9.nupkg.sha512",
+        "microsoft.aspnetcore.components.analyzers.9.0.11.nupkg.sha512",
         "microsoft.aspnetcore.components.analyzers.nuspec"
       ]
     },
@@ -1675,10 +1714,10 @@
         "microsoft.aspnetcore.components.authorization.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Forms/9.0.9": {
-      "sha512": "peotiQv5UfocSWtP837SFvKwQ+fwJhUItY0Uo7YgeYUbajHmfTfiFaOBUfsP1uF3RkVyzAK7IGR38PuIZ0JB6g==",
+    "Microsoft.AspNetCore.Components.Forms/9.0.11": {
+      "sha512": "emoJb7TUrOy27stNXcXv+WsyItn0Qhe4gMcZHtfIfcnErRjN2YOotCAKWezBeKvYWqaV28qsDpjxvjjcANxZGw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.forms/9.0.9",
+      "path": "microsoft.aspnetcore.components.forms/9.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1686,14 +1725,51 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net9.0/Microsoft.AspNetCore.Components.Forms.dll",
         "lib/net9.0/Microsoft.AspNetCore.Components.Forms.xml",
-        "microsoft.aspnetcore.components.forms.9.0.9.nupkg.sha512",
+        "microsoft.aspnetcore.components.forms.9.0.11.nupkg.sha512",
         "microsoft.aspnetcore.components.forms.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Web/9.0.9": {
-      "sha512": "wBAFkkBtZAZ856SvqS3NTzRHqgvlcAu7gwsw74e2c0Y7Rc6/VLmO/RJNGiYMjYaex3M+sFR7zETtxiXHneXJCw==",
+    "Microsoft.AspNetCore.Components.QuickGrid/9.0.11": {
+      "sha512": "iN7YwgDY1okGrxErOoDe2hqzss0X1Hl5W+VV9Wq+PqUqfyvUxH3eRr5giCI4xCRBhzhBJBvq6HfCbyuaoejCrA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.web/9.0.9",
+      "path": "microsoft.aspnetcore.components.quickgrid/9.0.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/Microsoft.AspNetCore.Components.QuickGrid.props",
+        "build/Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Microsoft.AspNetCore.Components.QuickGrid.props",
+        "buildTransitive/Microsoft.AspNetCore.Components.QuickGrid.props",
+        "lib/net9.0/Microsoft.AspNetCore.Components.QuickGrid.dll",
+        "lib/net9.0/Microsoft.AspNetCore.Components.QuickGrid.xml",
+        "microsoft.aspnetcore.components.quickgrid.9.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.components.quickgrid.nuspec",
+        "staticwebassets/Microsoft.AspNetCore.Components.QuickGrid.25o87uqmvr.bundle.scp.css",
+        "staticwebassets/QuickGrid.razor.js"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter/9.0.11": {
+      "sha512": "9rbf869q7uSaSYre+gsuCLuBiR9ClIIYUMskL+49OCqjsLdxZBDcvjnn9lStTepIyRBBtiPOx1sHFmYSxQkPSA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.quickgrid.entityframeworkadapter/9.0.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net9.0/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.dll",
+        "lib/net9.0/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.xml",
+        "microsoft.aspnetcore.components.quickgrid.entityframeworkadapter.9.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.components.quickgrid.entityframeworkadapter.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Web/9.0.11": {
+      "sha512": "wU9oVKqHfP4euIpRiRHLVkmhjFXctOvRDHOMUdBRnUErUua+fE6KsIRuBvUKla6tIql9sS58wbETZnjZpnX0lw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.web/9.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1701,14 +1777,14 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net9.0/Microsoft.AspNetCore.Components.Web.dll",
         "lib/net9.0/Microsoft.AspNetCore.Components.Web.xml",
-        "microsoft.aspnetcore.components.web.9.0.9.nupkg.sha512",
+        "microsoft.aspnetcore.components.web.9.0.11.nupkg.sha512",
         "microsoft.aspnetcore.components.web.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Metadata/9.0.9": {
-      "sha512": "AiIVl/wZOk5TeJjQrLltG6BdZ5wNywqB+48tGxZpNL151YKuc+5/e/h1q9lthNdFGnWPHOclA3o06WfFrCGa7A==",
+    "Microsoft.AspNetCore.Metadata/9.0.11": {
+      "sha512": "O0HzG5utNH6ihO632k0nHFZa8iNDmGphdgWWqeDSdN/T9n0ZOXlA5+q77DxY3nHTjNfA0KMfpykIhEI+Wmzosg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.metadata/9.0.9",
+      "path": "microsoft.aspnetcore.metadata/9.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1720,7 +1796,7 @@
         "lib/net9.0/Microsoft.AspNetCore.Metadata.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.xml",
-        "microsoft.aspnetcore.metadata.9.0.9.nupkg.sha512",
+        "microsoft.aspnetcore.metadata.9.0.11.nupkg.sha512",
         "microsoft.aspnetcore.metadata.nuspec"
       ]
     },
@@ -3515,10 +3591,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.JSInterop/9.0.9": {
-      "sha512": "Babc8chP50+TS4glykMYs8jDeJyqeZZLp+qFfRF1S7FReS+k2q8ufjONV/m+Pr1STA7TvAC7b/Gx0UXyjRjWHg==",
+    "Microsoft.JSInterop/9.0.11": {
+      "sha512": "5w/W57cXjt8Ugp5COQCsv1R/wt7KzZXjbTqK4AFvgsxqmv1DFJ6OzagzJmwgp6unczFuff6t8wNi+URePV6PYQ==",
       "type": "package",
-      "path": "microsoft.jsinterop/9.0.9",
+      "path": "microsoft.jsinterop/9.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3526,7 +3602,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net9.0/Microsoft.JSInterop.dll",
         "lib/net9.0/Microsoft.JSInterop.xml",
-        "microsoft.jsinterop.9.0.9.nupkg.sha512",
+        "microsoft.jsinterop.9.0.11.nupkg.sha512",
         "microsoft.jsinterop.nuspec"
       ]
     },
@@ -3973,6 +4049,8 @@
       "Blazor.Bootstrap >= 3.5.0",
       "BootstrapBlazor >= 9.11.0",
       "HtmlAgilityPack >= 1.12.4",
+      "Microsoft.AspNetCore.Components.QuickGrid >= 9.0.11",
+      "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter >= 9.0.11",
       "Microsoft.EntityFrameworkCore >= 9.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.11",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4"
@@ -4037,6 +4115,14 @@
           "HtmlAgilityPack": {
             "target": "Package",
             "version": "[1.12.4, )"
+          },
+          "Microsoft.AspNetCore.Components.QuickGrid": {
+            "target": "Package",
+            "version": "[9.0.11, )"
+          },
+          "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": {
+            "target": "Package",
+            "version": "[9.0.11, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
