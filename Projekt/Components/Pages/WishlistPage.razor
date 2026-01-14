@@ -1,11 +1,10 @@
 ﻿@page "/wishlist"
-@rendermode InteractiveServer
 @using BlazorBootstrap
 @using Projekt.Database
 @using Projekt.Items
-@using HtmlAgilityPack
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject Database db
+@rendermode InteractiveServer
 
 <PageTitle>My Games and more</PageTitle>
 
@@ -46,7 +45,12 @@
             <div>
                 <label>
                     Platform:
-                    <InputText @bind-Value="Wish!.Platform"/>
+                    <select @bind="Wish!.Platform">
+                        @foreach (var platform in Methods.values)
+                        {
+                            <option value="@platform">@platform</option>
+                        }
+                    </select>
                 </label>
             </div>
             <div>
@@ -82,7 +86,7 @@
 
     private async Task Submit(Wishlist wish)
     {
-        wish.ValueOfItem = GameValueScraper(wish.Name, wish.Platform);
+        wish.ValueOfItem = Methods.GameValueScraper(wish.Name, wish.Platform);
         db.Wishlist.Add(wish);
         await db.SaveChangesAsync();
         await Grid.RefreshDataAsync();
@@ -93,22 +97,5 @@
         db.Wishlist.Remove(wish);
         await db.SaveChangesAsync();
         await Grid.RefreshDataAsync();
-    }
-    
-    string GameValueScraper(string name, string platform)
-    {
-        name = name.ToLower().Replace(' ', '-');
-        platform = platform.ToLower().Replace(' ', '-');
-        var web =  new HtmlWeb();
-        var url = "https://pricecharting.com/game/" + platform + "/" + name;
-        var doc = web.Load(url);
-        var gameElement = doc.GetElementbyId("complete_price");
-        if (gameElement == null)
-        {
-            return "N/A";
-        }
-        var target = gameElement.SelectSingleNode(".//*[contains(@class, 'price js-price')]");
-        string price = target.InnerText;
-        return price;
     }
 }

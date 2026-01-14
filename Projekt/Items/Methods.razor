@@ -1,0 +1,38 @@
+﻿@using HtmlAgilityPack;
+
+@code {
+    public static string[] values =
+    {
+        "Select option",
+        "Playstation", 
+        "Playstation 2",
+        "Playstation 3", 
+        "Playstation 4",
+        "Playstation 5",
+        "PSP",
+        "Playstation Vita",
+        "Xbox",
+        "Xbox 360",
+        "Xbox One",
+        "Xbox Series X",
+        "Nintendo Switch",
+    };
+        
+    
+    public static string GameValueScraper(string name, string platform)
+    { 
+        name = name.ToLower().Replace(' ', '-');
+        platform = platform.ToLower().Replace(' ', '-');
+        var web =  new HtmlWeb();
+        var url = "https://pricecharting.com/game/pal-" + platform + "/" + name;
+        var doc = web.Load(url);
+        var gameElement = doc.GetElementbyId("complete_price");
+        if (gameElement == null)
+        {
+            return "N/A";
+        }
+        var target = gameElement.SelectSingleNode(".//*[contains(@class, 'price js-price')]");
+        string price = target.InnerText;
+        return price; 
+    }
+}

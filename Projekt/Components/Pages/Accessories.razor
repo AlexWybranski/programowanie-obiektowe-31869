@@ -1,10 +1,10 @@
 ﻿@page "/accessories"
-@rendermode InteractiveServer
 @using BlazorBootstrap
 @using Projekt.Database
 @using Projekt.Items
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject Database db
+@rendermode InteractiveServer
 
 <PageTitle>My Games and more</PageTitle>
 
@@ -48,7 +48,12 @@
             <div>
                 <label>
                     Platform:
-                    <InputText @bind-Value="Acc!.Platform"/>
+                    <select @bind="Acc!.Platform">
+                        @foreach (var platform in Methods.values)
+                        {
+                            <option value="@platform">@platform</option>
+                        }
+                    </select>
                 </label>
             </div>
             <div>
