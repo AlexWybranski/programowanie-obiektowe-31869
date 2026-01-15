@@ -1,4 +1,5 @@
 ﻿@using HtmlAgilityPack;
+@using Microsoft.EntityFrameworkCore
 
 @code {
     public static string[] values =
@@ -17,7 +18,6 @@
         "Xbox Series X",
         "Nintendo Switch",
     };
-        
     
     public static string GameValueScraper(string name, string platform)
     { 

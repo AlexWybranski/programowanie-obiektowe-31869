@@ -145,7 +145,6 @@ C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\fzdsoxwls0-j5mq2jizvt.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\bqeo69tsdi-keugtjm085.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\npxg10pnzj-nvvlpmu67g.gz
-C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\1d1tw353ua-zub09dkrxp.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\2mc6c3lc28-pj5nd1wqec.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\7ktrqlfx3n-43atpzeawx.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\9inmpjy5i8-v0zj4ognzu.gz
@@ -327,3 +326,4 @@ C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\3gin1ph7ub-25o87uqmvr.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\j9zu1utwki-j1bla9fvtb.gz
 C:\Users\alexw\programowanie-obiektowe-31869\Projekt\bin\Debug\net9.0\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.dll
+C:\Users\alexw\programowanie-obiektowe-31869\Projekt\obj\Debug\net9.0\compressed\1d1tw353ua-zub09dkrxp.gz

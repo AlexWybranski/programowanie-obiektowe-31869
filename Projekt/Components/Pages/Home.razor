@@ -3,6 +3,7 @@
 @using Projekt.Database
 @using Projekt.Items
 @using Microsoft.AspNetCore.Components.QuickGrid
+@using Microsoft.EntityFrameworkCore
 @inject Database db
 @rendermode InteractiveServer
 
@@ -24,8 +25,7 @@
     <PropertyColumn Title="Edition"
                     Property="@(x => x.Edition)"/>
     <PropertyColumn Title="Value"
-                    Property="@(x => x.ValueOfItem)"
-                    Sortable="true"/>
+                    Property="@(x => x.ValueOfItem)"/>
     <TemplateColumn>
         <div>
             <a @onclick="async() => await Delete(context)">
@@ -39,15 +39,15 @@
         <form method="post" @onsubmit="async() => await Submit(Game)" @formname="starship-plain-form">
             <AntiforgeryToken/>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Title:
-                    <InputText @bind-Value="Game!.Name"/>
+                    <InputText class="form-control" style="border-color: #A9A9A9" @bind-Value="Game!.Name"/>
                 </label>
             </div>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Platform:
-                    <select @bind="Game!.Platform">
+                    <select class="form-control" style="border-color: #A9A9A9" @bind="Game!.Platform">
                         @foreach (var platform in Methods.values)
                         {
                             <option value="@platform">@platform</option>
@@ -56,20 +56,27 @@
                 </label>
             </div>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Edition:
-                    <InputText @bind-Value="Game!.Edition"/>
+                    <InputText class="form-control" style="border-color: #A9A9A9" @bind-Value="Game!.Edition"/>
                 </label>
             </div>
+            <br/>
             <div>
-                <button @onclick="OnHideModalClick">Cancel</button>
-                <button @onclick="OnHideModalClick" type="submit">Add</button>
+                <button class="btn btn-secondary" @onclick="OnHideModalClick" type="submit">Add</button>
             </div>
         </form>
     </BodyTemplate>
 </Modal>
-
-<Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+<br/>
+<div style="display: flex; flex-direction: row; align-items: flex-start">
+    <Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+    <div style="margin-left: auto; display: flex; flex-direction: column; align-items: flex-start;">
+        <p style="margin-bottom: 0.5rem; text-align: right; width: 100%">
+            Total games: @db.Games.Count()
+        </p>
+    </div>
+</div>
 
 @code {
     QuickGrid<Game> Grid;

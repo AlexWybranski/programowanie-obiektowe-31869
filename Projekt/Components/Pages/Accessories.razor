@@ -25,8 +25,7 @@
     <PropertyColumn Title="Colour"
                     Property="@(x => x.Colour)"/>
     <PropertyColumn Title="Value"
-                    Property="@(x => x.ValueOfItem)"
-                    Sortable="true"/>
+                    Property="@(x => x.ValueOfItem)"/>
     <TemplateColumn>
         <div>
             <a @onclick="async() => await Delete(context)">
@@ -35,20 +34,20 @@
         </div>
     </TemplateColumn>
 </QuickGrid>
-<Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
+<Modal @ref="modal" title="Add Accessory" IsVerticallyCentered="true">
     <BodyTemplate>
         <form method="post" @onsubmit="async() => await Submit(Acc)" @formname="starship-plain-form">
             <AntiforgeryToken/>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Name:
-                    <InputText @bind-Value="Acc!.Name"/>
+                    <InputText class="form-control" style="border-color: #A9A9A9" @bind-Value="Acc!.Name"/>
                 </label>
             </div>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Platform:
-                    <select @bind="Acc!.Platform">
+                    <select class="form-control" style="border-color: #A9A9A9" @bind="Acc!.Platform">
                         @foreach (var platform in Methods.values)
                         {
                             <option value="@platform">@platform</option>
@@ -57,26 +56,32 @@
                 </label>
             </div>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Colour:
-                    <InputText @bind-Value="Acc!.Colour"/>
+                    <InputText class="form-control" style="border-color: #A9A9A9" @bind-Value="Acc!.Colour"/>
                 </label>
             </div>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Value:
-                    <InputText @bind-Value="Acc!.ValueOfItem"/>
+                    <InputText class="form-control" style="border-color: #A9A9A9" @bind-Value="Acc!.ValueOfItem"/>
                 </label>
             </div>
             <div>
-                <button @onclick="OnHideModalClick">Cancel</button>
-                <button @onclick="OnHideModalClick" type="submit">Add</button>
+                <button class="btn btn-secondary" @onclick="OnHideModalClick" type="submit">Add</button>
             </div>
         </form>
     </BodyTemplate>
 </Modal>
-
-<Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+<br/>
+<div style="display: flex; flex-direction: row; align-items: flex-start">
+    <Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+    <div style="margin-left: auto; display: flex; flex-direction: column; align-items: flex-start;">
+        <p style="margin-bottom: 0.5rem; text-align: right; width: 100%">
+            Total accessories: @db.Accessories.Count()
+        </p>
+    </div>
+</div>
 
 @code {
     QuickGrid<Accessory> Grid;

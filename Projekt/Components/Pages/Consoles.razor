@@ -4,6 +4,7 @@
 @using Projekt.Database
 @using Projekt.Items
 @using Microsoft.AspNetCore.Components.QuickGrid
+@using Microsoft.EntityFrameworkCore
 @using Console = Projekt.Items.Console
 @inject Database db
 
@@ -22,8 +23,7 @@
     <PropertyColumn Title="Condition"
                     Property="@(x => x.Condition)"/>
     <PropertyColumn Title="Value"
-                    Property="@(x => x.ValueOfItem)"
-                    Sortable="true"/>
+                    Property="@(x => x.ValueOfItem)"/>
     <TemplateColumn>
         <div>
             <a @onclick="async() => await Delete(context)">
@@ -37,32 +37,38 @@
         <form method="post" @onsubmit="async() => await Submit(Console)" @formname="starship-plain-form">
             <AntiforgeryToken/>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Name:
-                    <InputText @bind-Value="Console!.Name"/>
+                    <InputText class="form-control" style="border-color: #A9A9A9" @bind-Value="Console!.Name"/>
                 </label>
             </div>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Condition:
-                    <InputText @bind-Value="Console!.Condition"/>
+                    <InputText class="form-control" style="border-color: #A9A9A9" @bind-Value="Console!.Condition"/>
                 </label>
             </div>
             <div>
-                <label>
+                <label class="form-label" style="width: 100%">
                     Value:
-                    <InputText @bind-Value="Console!.ValueOfItem"/>
+                    <InputText class="form-control" style="border-color: #A9A9A9" @bind-Value="Console!.ValueOfItem"/>
                 </label>
             </div>
             <div>
-                <button @onclick="OnHideModalClick">Cancel</button>
-                <button @onclick="OnHideModalClick" type="submit">Add</button>
+                <button class="btn btn-secondary" @onclick="OnHideModalClick" type="submit">Add</button>
             </div>
         </form>
     </BodyTemplate>
 </Modal>
-
-<Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+<br/>
+<div style="display: flex; flex-direction: row; align-items: flex-start">
+    <Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
+    <div style="margin-left: auto; display: flex; flex-direction: column; align-items: flex-start;">
+        <p style="margin-bottom: 0.5rem; text-align: right; width: 100%">
+            Total consoles: @db.Consoles.Count()
+        </p>
+    </div>
+</div>
 
 @code {
     QuickGrid<Console> ConsoleGrid;
@@ -79,6 +85,8 @@
     {
         await modal.HideAsync();
     }
+
+
     
     [SupplyParameterFromForm]
     private Console? Console { get; set; }
