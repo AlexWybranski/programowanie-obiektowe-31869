@@ -5,6 +5,7 @@
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using Microsoft.EntityFrameworkCore
 @inject Database db
+@inject IJSRuntime JS
 @rendermode InteractiveServer
 
 <PageTitle>My Games and more</PageTitle>
@@ -73,16 +74,16 @@
     <Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
     <div style="margin-left: auto; display: flex; flex-direction: column; align-items: flex-start;">
         <p style="margin-bottom: 0.5rem; text-align: right; width: 100%">
-            Total games: @db.Games.Count()
+            Total games: @count
         </p>
     </div>
 </div>
-
 @code {
     QuickGrid<Game> Grid;
-    
     private Modal modal = default!;
 
+    private int count = 0;
+    
     public async Task OnShowModalClick()
     {
         Game = new Game();
@@ -96,14 +97,33 @@
     
     [SupplyParameterFromForm]
     private Game? Game { get; set; }
-    protected override void OnInitialized() => Game ??= new();
+
+    protected override void OnInitialized()
+    {
+        Game ??= new();
+        count = db.Games.Count();
+    }
+        
 
     private async Task Submit(Game game)
     {
+        if (string.IsNullOrWhiteSpace(game.Name) ||
+            string.IsNullOrWhiteSpace(game.Edition) ||
+            string.IsNullOrWhiteSpace(game.Platform))
+        {
+            await JS.InvokeVoidAsync("alert", "Something went wrong, try to fill all parameters");
+            var entry = db.Entry(game);
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Detached;
+            }
+            return;
+        }
         game.ValueOfItem = Methods.GameValueScraper(game.Name, game.Platform);
         db.Games.Add(game);
         await db.SaveChangesAsync();
         await Grid.RefreshDataAsync();
+        ++count;
     }
 
     private async Task Delete(Game game)
@@ -111,5 +131,6 @@
         db.Games.Remove(game);
         await db.SaveChangesAsync();
         await Grid.RefreshDataAsync();
+        --count;
     }
 }

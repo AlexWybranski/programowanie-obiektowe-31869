@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+
 builder.Services.AddBlazorBootstrap();
 
 builder.Services.AddQuickGridEntityFrameworkAdapter();
@@ -17,7 +18,6 @@ builder.Services.AddDbContext<Database>(options =>
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     options.UseNpgsql(connectionString);
 });
-
 
 var app = builder.Build();
 

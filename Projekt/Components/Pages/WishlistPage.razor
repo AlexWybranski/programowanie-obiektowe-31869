@@ -3,7 +3,9 @@
 @using Projekt.Database
 @using Projekt.Items
 @using Microsoft.AspNetCore.Components.QuickGrid
+@using Microsoft.EntityFrameworkCore
 @inject Database db
+@inject IJSRuntime JS
 @rendermode InteractiveServer
 
 <PageTitle>My Games and more</PageTitle>
@@ -63,7 +65,7 @@
     <Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
     <div style="margin-left: auto; display: flex; flex-direction: column; align-items: flex-start;">
         <p style="margin-bottom: 0.5rem; text-align: right; width: 100%">
-            Total games on wishlist: @db.Wishlist.Count()
+            Total games on wishlist: @count
         </p>
     </div>
 </div>
@@ -73,6 +75,8 @@
     
     private Modal modal = default!;
 
+    private int count = 0;
+    
     public async Task OnShowModalClick()
     {
         Wish = new Wishlist();
@@ -87,14 +91,29 @@
     [SupplyParameterFromForm]
     private Wishlist? Wish { get; set; }
 
-    protected override void OnInitialized() => Wish ??= new();
+    protected override void OnInitialized()
+    {
+        Wish ??= new();
+        count = db.Wishlist.Count();
+    } 
 
     private async Task Submit(Wishlist wish)
     {
+        if (string.IsNullOrWhiteSpace(Wish.Name) || string.IsNullOrWhiteSpace(Wish.Platform))
+        {
+            await JS.InvokeVoidAsync("alert", "Something went wrong, try to fill all parameters");
+            var entry = db.Entry(wish);
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Detached;
+            }
+            return;
+        }
         wish.ValueOfItem = Methods.GameValueScraper(wish.Name, wish.Platform);
         db.Wishlist.Add(wish);
         await db.SaveChangesAsync();
         await Grid.RefreshDataAsync();
+        ++count;
     }
     
     private async Task Delete(Wishlist wish)
@@ -102,5 +121,6 @@
         db.Wishlist.Remove(wish);
         await db.SaveChangesAsync();
         await Grid.RefreshDataAsync();
+        --count;
     }
 }

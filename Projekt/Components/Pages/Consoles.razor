@@ -1,5 +1,4 @@
 ﻿@page "/consoles"
-@rendermode InteractiveServer
 @using BlazorBootstrap
 @using Projekt.Database
 @using Projekt.Items
@@ -7,6 +6,8 @@
 @using Microsoft.EntityFrameworkCore
 @using Console = Projekt.Items.Console
 @inject Database db
+@inject IJSRuntime JS
+@rendermode InteractiveServer
 
 <PageTitle>My Games and more</PageTitle>
 
@@ -65,7 +66,7 @@
     <Button Color="ButtonColor.Secondary" @onclick="OnShowModalClick">Add</Button>
     <div style="margin-left: auto; display: flex; flex-direction: column; align-items: flex-start;">
         <p style="margin-bottom: 0.5rem; text-align: right; width: 100%">
-            Total consoles: @db.Consoles.Count()
+            Total consoles: @count
         </p>
     </div>
 </div>
@@ -75,6 +76,8 @@
     
     private Modal modal = default!;
 
+    private int count = 0;
+    
     public async Task OnShowModalClick()
     {
         Console = new Console();
@@ -90,7 +93,12 @@
     
     [SupplyParameterFromForm]
     private Console? Console { get; set; }
-    protected override void OnInitialized() => Console ??= new();
+
+    protected override void OnInitialized()
+    {
+        Console ??= new();
+        count = db.Consoles.Count();
+    } 
 
     private async Task Submit(Console console)
     {
@@ -98,9 +106,22 @@
         {
             console.ValueOfItem = "N/A";
         }
+
+        if (string.IsNullOrWhiteSpace(console.Name) ||
+            string.IsNullOrWhiteSpace(console.Condition))
+        {
+            await JS.InvokeVoidAsync("alert", "Something went wrong, try to fill all parameters");
+            var entry = db.Entry(console);
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Detached;
+            }
+            return;
+        }
         db.Consoles.Add(console);
         await db.SaveChangesAsync();
         await ConsoleGrid.RefreshDataAsync();
+        ++count;
     }
     
     private async Task Delete(Console console)
@@ -108,5 +129,6 @@
         db.Consoles.Remove(console);
         await db.SaveChangesAsync();
         await ConsoleGrid.RefreshDataAsync();
+        --count;
     }
 }
