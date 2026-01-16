@@ -26,14 +26,17 @@
     <PropertyColumn Title="Value"
                     Property="@(x => x.ValueOfItem)"/>
     <TemplateColumn>
-        <div>
-            <a @onclick="async() => await Delete(context)">
+        <div style="display: flex; flex-direction: row; gap: 1rem">
+            <a @onclick="async() => await Transfer(context)">
+               <span class="bi bi-arrow-left-right" aria-hidden="true" style="color: #286BB7"></span>
+            </a>
+            <a @onclick="async () => await Delete(context)">
                 <span class="bi bi-trash" aria-hidden="true" style="color: #a52834"></span>
             </a>
         </div>
     </TemplateColumn>
 </QuickGrid>
-<Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
+<Modal @ref="modal" title="Add wish" IsVerticallyCentered="true">
     <BodyTemplate>
         <form method="post" @onsubmit="async() => await Submit(Wish)" @formname="starship-plain-form">
             <AntiforgeryToken/>
@@ -123,4 +126,28 @@
         await Grid.RefreshDataAsync();
         --count;
     }
+    public Game Game { get; set; }
+
+    private async Task Transfer(Wishlist wish)
+    {
+        string edition = await JS.InvokeAsync<string>("prompt", "Edition: ", "Standard");
+        if (string.IsNullOrWhiteSpace(edition))
+        {
+            return;
+        }
+        Game = new Game
+        {
+            Name = wish.Name,
+            Platform = wish.Platform,
+            Edition = edition,
+            ValueOfItem = wish.ValueOfItem
+        };
+        await db.Games.AddAsync(Game);
+        db.Wishlist.Remove(wish);
+        await db.SaveChangesAsync();
+        await Grid.RefreshDataAsync();
+        --count;
+    }
+
+
 }

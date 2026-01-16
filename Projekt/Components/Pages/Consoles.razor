@@ -33,7 +33,7 @@
         </div>
     </TemplateColumn>
 </QuickGrid>
-<Modal @ref="modal" title="Modal title" IsVerticallyCentered="true">
+<Modal @ref="modal" title="Add console" IsVerticallyCentered="true">
     <BodyTemplate>
         <form method="post" @onsubmit="async() => await Submit(Console)" @formname="starship-plain-form">
             <AntiforgeryToken/>
