@@ -135,6 +135,10 @@
         {
             return;
         }
+        if (edition == "Digital")
+        {
+            wish.ValueOfItem = "$0.00";
+        }
         Game = new Game
         {
             Name = wish.Name,

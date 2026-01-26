@@ -119,7 +119,15 @@
             }
             return;
         }
-        game.ValueOfItem = Methods.GameValueScraper(game.Name, game.Platform);
+
+        if (game.Edition == "Digital")
+        {
+            game.ValueOfItem = "$0.00";
+        }
+        else
+        {
+            game.ValueOfItem = Methods.GameValueScraper(game.Name, game.Platform);
+        }
         db.Games.Add(game);
         await db.SaveChangesAsync();
         await Grid.RefreshDataAsync();
